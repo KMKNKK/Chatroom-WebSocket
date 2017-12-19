@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title>聊天室</title>
+	
+		<link href="new/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link type="text/css" rel="stylesheet" href="css/chat.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/socket.io.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
+</head>
+<body>
+	
+		<div class="login-wrap" >
+				<div class="login-con" >
+					<h3>用户登录</h3>
+			  <input class="form-control input-lg" type="text" placeholder="输入你的尊姓大名" id="loginName">
+			  <button type="button" class="btn btn-info btn-lg btn-block login-btn">登录</button>
+				</div>
+		</div>
+	
+	<div class="chat-wrap">
+		
+			<p class="bg-primary" style="display:block ;position: fixed; z-index:100; width: 100%; height: 45px; font-size:20px; line-height: 45px; opacity:0.8;">多人聊天室</p>
+		
+		
+		<div class="chat-con clearfix"></div>
+		<div class="bottom col-md-12">
+			<input class="form-control input-lg" type="text" id="sendtxt">
+			<button type="button" class="btn btn-info btn-lg btn-block sendBtn">发送</button>
+		</div>
+	</div>
+
+	<script src="new/jquery-3.2.1.min.js"></script>
+    <script src="new/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

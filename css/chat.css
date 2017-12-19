@@ -1,0 +1,47 @@
+/*公共样式*/
+*{padding:0; margin:0;}
+html,body{width:100%;height: 100%;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*zoom:1}
+.cred{color:#f03e3e;}
+.cgreen{color:#459d36;}
+.hide{display:none;}
+.fr{float:right;}
+.fl{float: left;}
+.rela{position: relative;}
+.abs{position:absolute;}
+*{font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}
+
+/*登录界面*/
+.login-wrap{
+    background:#FFFFFF; 
+    width:100%; 
+    height:100%; 
+    text-align:center;
+    }
+.login-con{
+    display: block;
+    margin: auto;
+    margin-top: 15%;
+    width: 35%}
+
+.login-con button{
+    margin-top: 20px;}
+.login-con input{
+    margin-top: 20px;}
+
+
+/*聊天界面*/
+.chat-wrap{width: 100%; height: 100%; background:#e7e7e7; text-align:center; background: url(bg.jpg);}
+.chat-con{padding: 50px 0; background:#e7e7e7; background: url(bg.jpg); opacity:0.8;}
+.chat-con p{display:inline-block; padding:5px 10px; background:#999;border-radius:5px; color:#fff; margin:5px 0;}
+.bottom{position:fixed;bottom:0; left: 0; width:100%; height: 50px; background: #fff;}
+.bottom input{width: 78%; height: 50px; line-height: 50px; float:left;border:none;}
+.bottom button{width: 20%;height: 50px; float: right; border:none; background:#459d36;color: #fff; opacity:0.8;}
+.chat-item{width:100%; margin-bottom:20px;}
+.item-right .message{background: #69a71e; color: #fff;}
+.item-left .message{background: #fff; margin-top:20px;}
+.item-left .img{margin-right:10px;}
+.item-left .uname{font-size:12px; left:50px; top:0;}
+.chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
+.chat-item .img{display:inline-block; width:40px; height:40px; background:url(../images/user/user.jpg) no-repeat; background-size:100% 100%;}
