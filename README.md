@@ -11,12 +11,11 @@ Here are some previewing effects:
 <br/>
 - First you enter index.html, you will see the entrance, you need to enter your name to login.
 <br/>
-<img src="http://kmknkk.oss-cn-beijing.aliyuncs.com/image/chat1.png">
-<img src="http://kmknkk.oss-cn-beijing.aliyuncs.com/image/chat2.png">
+<img src="img-read/chat1.png">
+<img src="img-read/chat2.png">
 <br/>
 <br/>
 - When you log in successfully, you can chat with other people who are also logged into the chat room.
 <br/>
-<img src="http://kmknkk.oss-cn-beijing.aliyuncs.com/image/chat3.png">
-<img src="http://kmknkk.oss-cn-beijing.aliyuncs.com/image/chat4.png">
-
+<img src="img-read/chat3.png">
+<img src="img-read/chat4.png">
