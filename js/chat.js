@@ -88,6 +88,16 @@ $(function(){
 			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username+'</span><span class="img fl"></span><span class="fl message">'+data.message+'</span></div>'
 		}
 		$('.chat-con').append(html);
+		ScrollToEnd();
+	}
+
+	//将页面下拉到最新消息处
+	function ScrollToEnd(){
+		var div = document.getElementsByTagName("div");
+		    div_length = div.length-2;
+	
+		div[div_length].scrollIntoViewIfNeeded();	
+
 	}
 
 })
