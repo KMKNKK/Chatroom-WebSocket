@@ -88,16 +88,63 @@ $(function(){
 			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username+'</span><span class="img fl"></span><span class="fl message">'+data.message+'</span></div>'
 		}
 		$('.chat-con').append(html);
-		ScrollToEnd();
+		if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
+			scrollToEnd();            
+		}
+									   
 	}
 
 	//将页面下拉到最新消息处
-	function ScrollToEnd(){
+	function scrollToEnd(){
 		var div = document.getElementsByTagName("div");
-		    div_length = div.length-2;
+		    div_length = div.length-3;
 	
-		div[div_length].scrollIntoViewIfNeeded();	
+		div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 
 	}
+
+	//判断当有新信息来时，用户是否在页面底端
+	function isNewInWindow(){
+		var div = document.getElementsByTagName("div");
+		div_length = div.length-4;
+
+		if(isInWindow(div[div_length])){
+			return true;
+		}
+		return false;
+	}
+
+	//判定元素是否在界面内
+	function isInWindow(x){		
+		if(x.getBoundingClientRect().top > window.innerHeight){
+			console.log("down");
+			return false;
+		}
+		else if(x.getBoundingClientRect().bottom < 0){
+			console.log("up");
+			return false;
+		}
+		return true;
+	}
+
+	//隐藏图标
+	document.getElementById('toNewMessage').style.display = "none";
+
+    //页面滚动事件
+	window.onscroll = function(){
+	
+		  if( isNewInWindow() ) { //显示图片
+			document.getElementById('toNewMessage').style.display = "none";
+		  } else { 				  //隐藏图片
+			document.getElementById('toNewMessage').style.display = "inline";
+		  }
+		
+		  var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
+		
+		  toNewMessage.onclick = function(){ //点击图片时触发的点击事件
+			scrollToEnd(); //页面移动到顶部
+		  }
+		}
+	
 
 })
