@@ -36,7 +36,7 @@ $(function(){
 			alert('用户名不匹配，请重试')
 		}
 	})
-
+	
 	/*登录失败*/
 	socket.on('loginFail',function(){
 		alert('昵称重复')
@@ -52,7 +52,10 @@ $(function(){
 	socket.on('receiveMessage',function(data){
 		showMessage(data)
 	})
-
+	/*接受图片*/
+	socket.on('receiveImage',function (data) {
+		showImage(data)
+    })
 	/*退出群聊提示*/
 	socket.on('leave',function(name){
 		if(name != null){
@@ -83,7 +86,7 @@ $(function(){
 		var txt = $('#sendtxt').val();
 		$('#sendtxt').val('');
 		if(txt){
-			socket.emit('sendMessage',{username:uname,message:txt});
+			socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8)});
 		}
 	}
 
@@ -92,9 +95,9 @@ $(function(){
 		var html
 		msg = showEmoji(data.message);
 		if(data.username === uname){
-			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="message fr">'+msg+'</span></div>' 
+			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><span class="message fr">'+ msg +'</span></div>'
 		}else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username+'</span><span class="img fl"></span><span class="fl message">'+data.message+'</span></div>' + msg
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + data.date+'</span><span class="img fl"></span><span class="fl message">'+msg+'</span></div>'
 		}
 		$('.chat-con').append(html);
 		if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
@@ -106,7 +109,7 @@ $(function(){
 	//将页面下拉到最新消息处
 	function scrollToEnd(){
 		var div = document.getElementsByTagName("div");
-		    div_length = div.length-3;
+		    div_length = div.length-4;
 	
 		div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 
@@ -115,7 +118,7 @@ $(function(){
 	//判断当有新信息来时，用户是否在页面底端
 	function isNewInWindow(){
 		var div = document.getElementsByTagName("div");
-		div_length = div.length-4;
+		div_length = div.length-5;
 
 		if(isInWindow(div[div_length])){
 			return true;
@@ -151,8 +154,33 @@ $(function(){
         };
         return result;
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+    //显示图片
+	function showImage(data){
+        var msgToDisplay = document.createElement('p');
+        msgToDisplay.style.color = '#000';
+        if(data.username === uname){
+            html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><img src="' + data.image + '" style = "max-width: 200px;max-height: 200px;float:right"/></div>'
+        }else{
+            html='<div class="chat-item item-left clearfix rela"><span class="img fr"></span><span class="abs uname">'+data.username + data.date+'</span><img src="' + data.image + '" style = "max-width: 200px;max-height: 200px;float: left"/></div>'
+        }
+        $('.chat-con').append(html);
+        if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
+            scrollToEnd();
+        }
+	}
 	//隐藏图标
+=======
+	//隐藏向下图标
+>>>>>>> origin/master
+=======
+	//隐藏向下图标
+>>>>>>> origin/master
 	document.getElementById('toNewMessage').style.display = "none";
+
+
+
 	//点击表情按钮时
     document.getElementById('emoji').addEventListener('click', function(e) {
         var emojiwrapper = document.getElementById('emojiWrapper');
@@ -171,10 +199,21 @@ $(function(){
     });
     document.getElementById('emojiWrapper').addEventListener('click', function(e) {
         //获取被点击的表情
+<<<<<<< HEAD
+<<<<<<< HEAD
         var target = e.target;
+        console.log(target);
+=======
+		var target = e.target;
+		console.log(target)
+>>>>>>> origin/master
+=======
+		var target = e.target;
+		console.log(target)
+>>>>>>> origin/master
         if (target.nodeName.toLowerCase() == 'img') {
             var sendtxt = document.getElementById('sendtxt');
-            sendtxt.focus();
+			sendtxt.focus();
             sendtxt.value = sendtxt.value + '[emoji:' + target.title + ']';
         };
     }, false);
@@ -185,6 +224,7 @@ $(function(){
 			document.getElementById('toNewMessage').style.display = "none";
 		  } else { 				  //隐藏图片
 			document.getElementById('toNewMessage').style.display = "inline";
+			document.getElementById('toNewMessage').style.marginLeft = "48.5px";
 		  }
 		
 		  var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
@@ -193,6 +233,22 @@ $(function(){
 			scrollToEnd(); //页面移动到顶部
 		  }
 		}
-	
+    document.getElementById('sendPhoto').addEventListener('change', function() {
+        //检查是否有文件被选中
+        if (this.files.length != 0) {
+            //获取文件并用FileReader进行读取
+            var file = this.files[0],
+                reader = new FileReader();
+            if (!reader) {
+                return;
+            };
+            reader.onload = function(e) {
+                //读取成功，显示到页面并发送到服务器
+                socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8)});
+                showImage({username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8)} );
+            };
+            reader.readAsDataURL(file);
+        };
+    }, false);
 
 })
