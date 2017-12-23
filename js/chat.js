@@ -156,6 +156,7 @@ $(function(){
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     //显示图片
 	function showImage(data){
         var msgToDisplay = document.createElement('p');
@@ -171,6 +172,9 @@ $(function(){
         }
 	}
 	//隐藏图标
+=======
+	//隐藏向下图标
+>>>>>>> origin/master
 =======
 	//隐藏向下图标
 >>>>>>> origin/master
@@ -201,8 +205,13 @@ $(function(){
         //获取被点击的表情
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         var target = e.target;
         console.log(target);
+=======
+		var target = e.target;
+		console.log(target)
+>>>>>>> origin/master
 =======
 		var target = e.target;
 		console.log(target)
