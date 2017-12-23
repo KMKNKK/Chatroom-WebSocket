@@ -22,9 +22,19 @@ $(function(){
 	$('.sendBtn').click(function(){
 		sendMessage()
 	});
+
 	$(document).keydown(function(event){            //键盘事件
-		if(event.keyCode == 13){                    //回车
-			sendMessage()
+		if(event.keyCode == 13 && $('#chat-wrap').css("display")==="none"){                    //回车
+			uname = $.trim($('#loginName').val());
+		if(uname){
+			/*向服务端发送登录事件*/
+			socket.emit('login',{username:uname})
+		}else{
+			alert('请输入昵称')
+		}
+		}
+		else if(event.keyCode == 13 && $('#chat-wrap').css("display")!=="none"){
+			sendMessage();
 		}
 	})
 
