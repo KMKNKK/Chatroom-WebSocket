@@ -40,7 +40,9 @@ io.on('connection', function (socket) {
 	socket.on('sendMessage',function(data){
         io.sockets.emit('receiveMessage',data);
     })
-
+	socket.on('sendImg',function (data) {
+		io.sockets.emit('receiveImage',data);
+    })
 	/*退出登录*/
 	socket.on('disconnect',function(){
 		/*向所有连接的客户端广播leave事件*/
