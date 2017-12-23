@@ -6,7 +6,7 @@ html,body{width:100%;height: 100%;}
 .cred{color:#f03e3e;}
 .cgreen{color:#459d36;}
 .hide{display:none;}
-.fr{float:right;}
+.fr{float: right;}
 .fl{float: left;}
 .rela{position: relative;}
 .abs{position:absolute;}
@@ -41,12 +41,23 @@ html,body{width:100%;height: 100%;}
 .bottom button{width: 20%;height: 50px; float: right; border:none; background:#459d36;color: #fff; opacity:0.8;}
 
 .chat-item{width:100%; margin-bottom:20px;}
-.item-right .message{background: #69a71e; color: #fff;}
+.item-right .message{background: #69a71e; color: #fff; margin-top:20px;}
+.item-right .uname{font-size:12px; right:65px; top:0; }
+.item-right .img{margin-left:10px;}
 .item-left .message{background: #fff; margin-top:20px;}
 .item-left .img{margin-right:10px;}
-.item-left .uname{font-size:12px; left:50px; top:0;}
+.item-left .uname{font-size:12px; left:50px; top:0; }
 .chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
 .chat-item .img{display:inline-block; width:40px; height:40px; background:url(../images/user/user.jpg) no-repeat; background-size:100% 100%;}
+
+
+#sendImage {
+    position: absolute;
+    width: 120px;
+    right: 322px;
+    opacity: 0;
+    overflow: hidden;
+}
 
 .to-new-message{
     margin-bottom:50px;

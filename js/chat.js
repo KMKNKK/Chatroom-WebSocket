@@ -1,6 +1,6 @@
 $(function(){
 	/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
-	var socket = io('ws://localhost:8081');
+	var socket = io('ws://47.94.86.217:8081');
 	/*定义用户名*/
 	var uname = null;
 
@@ -55,6 +55,7 @@ $(function(){
 	/*接受图片*/
 	socket.on('receiveImage',function (data) {
 		showImage(data)
+		console.log(data);
     })
 	/*退出群聊提示*/
 	socket.on('leave',function(name){
@@ -69,13 +70,17 @@ $(function(){
 		$('.login-wrap').hide('slow');
         var emojiContainer = document.getElementById('emojiWrapper'),
             docFragment = document.createDocumentFragment();
-        for (var i = 0; i < 23; i++) {
+        for (let i = 0; i < 23; i++) {
+			
             var emojiItem = document.createElement('img');
             emojiItem.src = '../Chatroom-WebScoket/images/emoji/' + i + '.gif';
-            emojiItem.title = i;
-            docFragment.appendChild(emojiItem);
+			emojiItem.title = i;
+			emojiItem.num = i;
+		
+			docFragment.appendChild(emojiItem);
+			
         };
-        emojiContainer.appendChild(docFragment);
+		emojiContainer.appendChild(docFragment);
 		$('.chat-wrap').show('slow');
 	}
 
@@ -95,9 +100,10 @@ $(function(){
 		var html
 		msg = showEmoji(data.message);
 		if(data.username === uname){
-			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><span class="message fr">'+ msg +'</span></div>'
+			//html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><span class="message fr">'+ msg +'</span></div>'
+			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fr"></span><span class="fr message">'+msg+'</span></div>'
 		}else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + data.date+'</span><span class="img fl"></span><span class="fl message">'+msg+'</span></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fl"></span><span class="fl message">'+msg+'</span></div>'
 		}
 		$('.chat-con').append(html);
 		if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
@@ -160,9 +166,11 @@ $(function(){
         var msgToDisplay = document.createElement('p');
         msgToDisplay.style.color = '#000';
         if(data.username === uname){
-            html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><img src="' + data.image + '" style = "max-width: 200px;max-height: 200px;float:right"/></div>'
+			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fr"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float:right"/></div>'
+			
         }else{
-            html='<div class="chat-item item-left clearfix rela"><span class="img fr"></span><span class="abs uname">'+data.username + data.date+'</span><img src="' + data.image + '" style = "max-width: 200px;max-height: 200px;float: left"/></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fl"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
+			
         }
         $('.chat-con').append(html);
         if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
@@ -197,7 +205,7 @@ $(function(){
         if (target.nodeName.toLowerCase() == 'img') {
             var sendtxt = document.getElementById('sendtxt');
 			sendtxt.focus();
-            sendtxt.value = sendtxt.value + '[emoji:' + target.title + ']';
+            sendtxt.value = sendtxt.value + '[emoji:' + target.num + ']';
         };
     }, false);
     //页面滚动事件
@@ -228,7 +236,7 @@ $(function(){
             reader.onload = function(e) {
                 //读取成功，显示到页面并发送到服务器
                 socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8)});
-                showImage({username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8)} );
+                
             };
             reader.readAsDataURL(file);
         };
