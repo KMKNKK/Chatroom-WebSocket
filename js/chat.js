@@ -1,6 +1,6 @@
 $(function(){
 	/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
-	var socket = io('ws://47.94.86.217:8081');
+	var socket = io('ws://localhost:8081');
 	/*定义用户名*/
 	var uname = null;
 
@@ -64,7 +64,15 @@ $(function(){
 	/*隐藏登录界面 显示聊天界面*/
 	function checkin(data){
 		$('.login-wrap').hide('slow');
-		
+        var emojiContainer = document.getElementById('emojiWrapper'),
+            docFragment = document.createDocumentFragment();
+        for (var i = 0; i < 23; i++) {
+            var emojiItem = document.createElement('img');
+            emojiItem.src = '../Chatroom-WebScoket/images/emoji/' + i + '.gif';
+            emojiItem.title = i;
+            docFragment.appendChild(emojiItem);
+        };
+        emojiContainer.appendChild(docFragment);
 		$('.chat-wrap').show('slow');
 	}
 
@@ -82,10 +90,11 @@ $(function(){
 	/*显示消息*/
 	function showMessage(data){
 		var html
+		msg = showEmoji(data.message);
 		if(data.username === uname){
-			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="message fr">'+data.message+'</span></div>'
+			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="message fr">'+msg+'</span></div>' 
 		}else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username+'</span><span class="img fl"></span><span class="fl message">'+data.message+'</span></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username+'</span><span class="img fl"></span><span class="fl message">'+data.message+'</span></div>' + msg
 		}
 		$('.chat-con').append(html);
 		if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
@@ -126,10 +135,49 @@ $(function(){
 		}
 		return true;
 	}
-
+	//分析文字并用表情包替换emoji
+	function showEmoji(msg) {
+        var match, result = msg,
+            reg = /\[emoji:\d+\]/g,
+            emojiIndex,
+            totalEmojiNum = document.getElementById('emojiWrapper').children.length;
+        while (match = reg.exec(msg)) {
+            emojiIndex = match[0].slice(7, -1);
+            if (emojiIndex > totalEmojiNum) {
+                result = result.replace(match[0], '[X]');
+            } else {
+                result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebScoket/images/emoji/' + emojiIndex + '.gif" />');
+            };
+        };
+        return result;
+    }
 	//隐藏图标
 	document.getElementById('toNewMessage').style.display = "none";
-
+	//点击表情按钮时
+    document.getElementById('emoji').addEventListener('click', function(e) {
+        var emojiwrapper = document.getElementById('emojiWrapper');
+        if(emojiwrapper.style.display != 'block'){
+            emojiwrapper.style.display = 'block';
+		}else{
+        	emojiwrapper.style.display = 'none';
+		}
+        e.stopPropagation();
+    }, false);
+    document.body.addEventListener('click', function(e) {
+        var emojiwrapper = document.getElementById('emojiWrapper');
+        if (e.target != emojiwrapper) {
+            emojiwrapper.style.display = 'none';
+        };
+    });
+    document.getElementById('emojiWrapper').addEventListener('click', function(e) {
+        //获取被点击的表情
+        var target = e.target;
+        if (target.nodeName.toLowerCase() == 'img') {
+            var sendtxt = document.getElementById('sendtxt');
+            sendtxt.focus();
+            sendtxt.value = sendtxt.value + '[emoji:' + target.title + ']';
+        };
+    }, false);
     //页面滚动事件
 	window.onscroll = function(){
 	
