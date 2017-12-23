@@ -14,11 +14,11 @@ html,body{width:100%;height: 100%;}
 
 /*登录界面*/
 .login-wrap{
-    background:#FFFFFF; 
-    width:100%; 
-    height:100%; 
+    background:#FFFFFF;
+    width:100%;
+    height:100%;
     text-align:center;
-    }
+}
 .login-con{
     display: block;
     margin: auto;

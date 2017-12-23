@@ -154,9 +154,7 @@ $(function(){
         };
         return result;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     //显示图片
 	function showImage(data){
         var msgToDisplay = document.createElement('p');
@@ -171,16 +169,7 @@ $(function(){
             scrollToEnd();
         }
 	}
-	//隐藏图标
-=======
-	//隐藏向下图标
->>>>>>> origin/master
-=======
-	//隐藏向下图标
->>>>>>> origin/master
-=======
-	//隐藏向下图标
->>>>>>> origin/master
+
 	document.getElementById('toNewMessage').style.display = "none";
 
 
@@ -203,23 +192,8 @@ $(function(){
     });
     document.getElementById('emojiWrapper').addEventListener('click', function(e) {
         //获取被点击的表情
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         var target = e.target;
         console.log(target);
-=======
-		var target = e.target;
-		console.log(target)
->>>>>>> origin/master
-=======
-		var target = e.target;
-		console.log(target)
->>>>>>> origin/master
-=======
-		var target = e.target;
-		console.log(target)
->>>>>>> origin/master
         if (target.nodeName.toLowerCase() == 'img') {
             var sendtxt = document.getElementById('sendtxt');
 			sendtxt.focus();
@@ -242,7 +216,7 @@ $(function(){
 			scrollToEnd(); //页面移动到顶部
 		  }
 		}
-    document.getElementById('sendPhoto').addEventListener('change', function() {
+    document.getElementById('sendImage').addEventListener('change', function() {
         //检查是否有文件被选中
         if (this.files.length != 0) {
             //获取文件并用FileReader进行读取
