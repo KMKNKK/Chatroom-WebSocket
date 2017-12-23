@@ -28,17 +28,17 @@
 
 		<div class="chat-con clearfix"></div>
 		
-		<div class="to-new-message" id="toNewMessage">
-			<img src="images/toNewMessage.png" width="40" height="40">
+		<div class="to-new-message row" >
+			<div id="emojiWrapper" class="emoji-show col-xs-8"></div>
+			<img src="images/toNewMessage.png" width="40" height="40" class="col-xs-4" id="toNewMessage">
 		</div>
-		<div class="item">
-			<input id="emoji" type="button" value="emoji" title="emoji" style="width: 10%;height: 50px;float: right">
-		</div>
+		
 		<div class="bottom col-md-12">
 			<input class="form-control input-lg" type="text" id="sendtxt">
+			<input id="emoji" type="button" value="emoji" class="btn btn-info" title="emoji" style="line-height: 100%; width:15%; height: 50px; margin-left:1%;">
 			<button type="button" class="btn btn-info btn-lg btn-block sendBtn">发送</button>
 		</div>
-		<div id="emojiWrapper">
+	  
 	</div>
 
 	<script src="new/jquery-3.2.1.min.js"></script>
