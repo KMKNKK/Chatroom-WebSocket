@@ -106,7 +106,7 @@ $(function(){
 	//将页面下拉到最新消息处
 	function scrollToEnd(){
 		var div = document.getElementsByTagName("div");
-		    div_length = div.length-3;
+		    div_length = div.length-4;
 	
 		div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 
@@ -115,7 +115,7 @@ $(function(){
 	//判断当有新信息来时，用户是否在页面底端
 	function isNewInWindow(){
 		var div = document.getElementsByTagName("div");
-		div_length = div.length-4;
+		div_length = div.length-5;
 
 		if(isInWindow(div[div_length])){
 			return true;
@@ -151,8 +151,11 @@ $(function(){
         };
         return result;
     }
-	//隐藏图标
+	//隐藏向下图标
 	document.getElementById('toNewMessage').style.display = "none";
+
+
+
 	//点击表情按钮时
     document.getElementById('emoji').addEventListener('click', function(e) {
         var emojiwrapper = document.getElementById('emojiWrapper');
@@ -171,10 +174,11 @@ $(function(){
     });
     document.getElementById('emojiWrapper').addEventListener('click', function(e) {
         //获取被点击的表情
-        var target = e.target;
+		var target = e.target;
+		console.log(target)
         if (target.nodeName.toLowerCase() == 'img') {
             var sendtxt = document.getElementById('sendtxt');
-            sendtxt.focus();
+			sendtxt.focus();
             sendtxt.value = sendtxt.value + '[emoji:' + target.title + ']';
         };
     }, false);
@@ -185,6 +189,7 @@ $(function(){
 			document.getElementById('toNewMessage').style.display = "none";
 		  } else { 				  //隐藏图片
 			document.getElementById('toNewMessage').style.display = "inline";
+			document.getElementById('toNewMessage').style.marginLeft = "48.5px";
 		  }
 		
 		  var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
