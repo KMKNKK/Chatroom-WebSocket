@@ -10,7 +10,7 @@ $(function(){
 	var headContainer = document.getElementById('headportrait'),
 	headFragment = document.createDocumentFragment();
 
-	for (let i = 1; i <= 9; i++) {
+	for (let i = 1; i <= 14; i++) {
 			
 		var headItem = document.createElement('img');
 
@@ -22,6 +22,24 @@ $(function(){
 		
 	};
 	headContainer.appendChild(headFragment);
+
+
+	var sendI = document.getElementById("sendImage");
+	sendI.onmouseover = over;
+	
+	sendI.onmouseleave = leave;
+	
+	function over(){
+		console.log("mouseover")
+		var fake = document.getElementById("fake");
+		fake.setAttribute("style","color:#fff;line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;background-color:#31b0d5;border-color:#269abc");
+		
+	}
+
+	function leave(){
+		var fake = document.getElementById("fake");
+		fake.setAttribute("style","line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;")
+	}
 
 
 	/*登录*/
@@ -219,10 +237,10 @@ $(function(){
         var msgToDisplay = document.createElement('p');
         msgToDisplay.style.color = '#000';
         if(data.username === uname){
-			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+headnum+' fr"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float:right"/></div>'
+			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+headnum+' fr" style="margin-left: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: right"/></div>'
 			
         }else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+data.headnum+' fl></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+data.headnum+' fl" style="margin-right: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
 			
         }
         $('.chat-con').append(html);
