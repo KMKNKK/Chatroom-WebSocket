@@ -45,5 +45,5 @@ Instead of forcing a jump to a new message when the user is looking at a histori
 - 换了一个更适合自适应屏幕的聊天背景
 - 加了一个logo
 
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/5.gif">
 <img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/6.gif">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/5.gif">
