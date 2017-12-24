@@ -57,6 +57,11 @@ html,body{width:100%;height: 100%;}
 .chat-item .img7{display:inline-block; width:40px; height:40px; background:url(../images/user/user7.jpg) no-repeat; background-size:100% 100%;}
 .chat-item .img8{display:inline-block; width:40px; height:40px; background:url(../images/user/user8.jpg) no-repeat; background-size:100% 100%;}
 .chat-item .img9{display:inline-block; width:40px; height:40px; background:url(../images/user/user9.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img10{display:inline-block; width:40px; height:40px; background:url(../images/user/user10.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img11{display:inline-block; width:40px; height:40px; background:url(../images/user/user11.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img12{display:inline-block; width:40px; height:40px; background:url(../images/user/user12.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img13{display:inline-block; width:40px; height:40px; background:url(../images/user/user13.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img14{display:inline-block; width:40px; height:40px; background:url(../images/user/user14.jpg) no-repeat; background-size:100% 100%;}
 
 
 #sendImage {
