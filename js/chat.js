@@ -7,6 +7,23 @@ $(function(){
 
 	$('.chat-wrap').hide();
 
+	var headContainer = document.getElementById('headportrait'),
+	headFragment = document.createDocumentFragment();
+
+	for (let i = 1; i <= 9; i++) {
+			
+		var headItem = document.createElement('img');
+
+		headItem.src = '../Chatroom-WebScoket/images/user/' + 'user' + i + '.jpg';
+	
+		headItem.num = i;
+	
+		headFragment.appendChild(headItem);
+		
+	};
+	headContainer.appendChild(headFragment);
+
+
 	/*登录*/
 	$('.login-btn').click(function(){
 		uname = $.trim($('#loginName').val());
@@ -17,6 +34,32 @@ $(function(){
 			alert('请输入昵称')
 		}
 	})
+
+	/*选择头像*/
+	
+	//点击头像按钮时
+    document.getElementById('head-btn').addEventListener('click', function(e) {
+        var headportrait = document.getElementById('headportrait');
+        if(headportrait.style.display != 'block'){
+            headportrait.style.display = 'block';
+		}else{
+        	headportrait.style.display = 'none';
+		}
+        e.stopPropagation();
+    }, false);
+
+
+	var headnum = 1;
+
+    document.getElementById('headportrait').addEventListener('click', function(e) {
+        //获取被点击的表情
+        var target = e.target;
+        console.log(target);
+        if (target.nodeName.toLowerCase() == 'img') {
+            headnum = e.target.num;
+        };
+	}, false);
+
 
 	/*发送消息*/
 	$('.sendBtn').click(function(){
@@ -101,7 +144,7 @@ $(function(){
 		var txt = $('#sendtxt').val();
 		$('#sendtxt').val('');
 		if(txt){
-			socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8)});
+			socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
 		}
 	}
 
@@ -111,9 +154,9 @@ $(function(){
 		msg = showEmoji(data.message);
 		if(data.username === uname){
 			//html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><span class="message fr">'+ msg +'</span></div>'
-			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fr"></span><span class="fr message">'+msg+'</span></div>'
+			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ headnum +' fr"></span><span class="fr message">'+msg+'</span></div>'
 		}else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fl"></span><span class="fl message">'+msg+'</span></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ data.headnum +' fl"></span><span class="fl message">'+msg+'</span></div>'
 		}
 		$('.chat-con').append(html);
 		if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
@@ -176,10 +219,10 @@ $(function(){
         var msgToDisplay = document.createElement('p');
         msgToDisplay.style.color = '#000';
         if(data.username === uname){
-			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fr"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float:right"/></div>'
+			html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+headnum+' fr"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float:right"/></div>'
 			
         }else{
-			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img fl"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
+			html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+data.headnum+' fl></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
 			
         }
         $('.chat-con').append(html);
@@ -201,13 +244,24 @@ $(function(){
         	emojiwrapper.style.display = 'none';
 		}
         e.stopPropagation();
-    }, false);
+	}, false);
+	
     document.body.addEventListener('click', function(e) {
-        var emojiwrapper = document.getElementById('emojiWrapper');
-        if (e.target != emojiwrapper) {
-            emojiwrapper.style.display = 'none';
-        };
-    });
+		if($('#chat-wrap').css("display")==="none") 				//位于登录界面
+		{
+			var headportrait = document.getElementById('headportrait');
+			if (e.target != headportrait) {
+				headportrait.style.display = 'none';
+			};
+		}
+		else{
+			var emojiwrapper = document.getElementById('emojiWrapper');
+			if (e.target != emojiwrapper) {
+				emojiwrapper.style.display = 'none';
+			};
+		}
+	});
+	
     document.getElementById('emojiWrapper').addEventListener('click', function(e) {
         //获取被点击的表情
         var target = e.target;
@@ -217,7 +271,10 @@ $(function(){
 			sendtxt.focus();
             sendtxt.value = sendtxt.value + '[emoji:' + target.num + ']';
         };
-    }, false);
+	}, false);
+	
+
+
     //页面滚动事件
 	window.onscroll = function(){
 	
@@ -230,7 +287,7 @@ $(function(){
 		
 		  var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
 		
-		  toNewMessage.onclick = function(){ //点击图片时触发的点击事件
+		  toNewMessage.onclick = function(){ //点击向下按钮时触发的点击事件
 			scrollToEnd(); //页面移动到顶部
 		  }
 		}
@@ -244,8 +301,8 @@ $(function(){
                 return;
             };
             reader.onload = function(e) {
-                //读取成功，显示到页面并发送到服务器
-                socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8)});
+                //读取成功，发送到服务器
+                socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
                 
             };
             reader.readAsDataURL(file);

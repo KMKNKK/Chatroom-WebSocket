@@ -48,7 +48,15 @@ html,body{width:100%;height: 100%;}
 .item-left .img{margin-right:10px;}
 .item-left .uname{font-size:12px; left:50px; top:0; }
 .chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
-.chat-item .img{display:inline-block; width:40px; height:40px; background:url(../images/user/user.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img1{display:inline-block; width:40px; height:40px; background:url(../images/user/user1.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img2{display:inline-block; width:40px; height:40px; background:url(../images/user/user2.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img3{display:inline-block; width:40px; height:40px; background:url(../images/user/user3.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img4{display:inline-block; width:40px; height:40px; background:url(../images/user/user4.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img5{display:inline-block; width:40px; height:40px; background:url(../images/user/user5.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img6{display:inline-block; width:40px; height:40px; background:url(../images/user/user6.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img7{display:inline-block; width:40px; height:40px; background:url(../images/user/user7.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img8{display:inline-block; width:40px; height:40px; background:url(../images/user/user8.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img9{display:inline-block; width:40px; height:40px; background:url(../images/user/user9.jpg) no-repeat; background-size:100% 100%;}
 
 
 #sendImage {
@@ -87,8 +95,29 @@ html,body{width:100%;height: 100%;}
     height: 25px;
 }
 #emojiWrapper img:hover {
-    background-color: blue;
+    background-color: rgba(31, 180, 226, 0.815);
 }
+
+#headportrait {
+    border-radius: 5px;
+    margin-left: 284px;
+    display: none;
+    width: 500px;
+    bottom: 3px;
+    position: absolute;
+    background-color: #28a6a499;
+    box-shadow: 0 0 10px #555;
+}
+#headportrait img {
+    margin: 2px;
+    padding: 2px;
+    width: 25px;
+    height: 25px;
+}
+#headportrait img:hover {
+    background-color: rgba(31, 180, 226, 0.815);
+}
+
 .items {
     height: 30px;
 }

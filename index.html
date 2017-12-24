@@ -7,7 +7,7 @@
 	
 		<link href="new/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	
-	<link type="text/css" rel="stylesheet" href="css/chat.css">
+	<link type="text/css" rel="stylesheet" href="css/chat.css" id="chat-css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/socket.io.js"></script>
 	<script type="text/javascript" src="js/chat.js"></script>
@@ -19,7 +19,10 @@
 					<h3>用户登录</h3>
 			  <input class="form-control input-lg" type="text" placeholder="输入你的尊姓大名" id="loginName">
 			  <button type="button" class="btn btn-info btn-lg btn-block login-btn">登录</button>
+			  <button type="button" class="btn btn-info btn-lg btn-block headportrait-btn" id="head-btn">选择头像</button>
+			  <div id="headportrait" class="headportrait-show"></div>
 				</div>
+				
 		</div>
 	
 	<div class="chat-wrap" id="chat-wrap">
