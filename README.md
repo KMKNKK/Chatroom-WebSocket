@@ -35,3 +35,15 @@ I followed Wechat in the project by adding a jump to the new message function:
 When the user is watching the latest news, new news will be refreshed in real time at the bottom, equivalent to the page jump to the latest news office.
 
 Instead of forcing a jump to a new message when the user is looking at a historical message, a floating button appears at the bottom and the user can jump to the new message by clicking on this button.
+
+----------------------------
+2017.12.24 更新
+花了两天时间，翻新了项目:
+- 增加了emoji和发送图片功能
+- 增加了头像选择功能
+- 修改乐众多CSS优化了用户体验
+- 换了一个更适合自适应屏幕的聊天背景
+- 加了一个logo
+
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/5.jpg">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/6.jpg">
