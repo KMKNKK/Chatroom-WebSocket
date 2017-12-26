@@ -1,4 +1,4 @@
-# Chatroom-WebScoket
+# Chatroom-WebSocket
 This is an IM-chatroom made by Websocket（socket.io）
 
 Mainly includes three parts documents：
