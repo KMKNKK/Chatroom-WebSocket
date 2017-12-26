@@ -14,7 +14,7 @@ $(function(){
 			
 		var headItem = document.createElement('img');
 
-		headItem.src = '../Chatroom-WebScoket/images/user/' + 'user' + i + '.jpg';
+		headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
 	
 		headItem.num = i;
 	
@@ -141,10 +141,10 @@ $(function(){
 		$('.login-wrap').hide('slow');
         var emojiContainer = document.getElementById('emojiWrapper'),
             docFragment = document.createDocumentFragment();
-        for (let i = 0; i < 23; i++) {
+        for (let i = 0; i < 60; i++) {
 			
             var emojiItem = document.createElement('img');
-            emojiItem.src = '../Chatroom-WebScoket/images/emoji/' + i + '.gif';
+            emojiItem.src = '../Chatroom-WebSocket/images/emoji/' + i + '.gif';
 			emojiItem.title = i;
 			emojiItem.num = i;
 		
@@ -226,7 +226,7 @@ $(function(){
             if (emojiIndex > totalEmojiNum) {
                 result = result.replace(match[0], '[X]');
             } else {
-                result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebScoket/images/emoji/' + emojiIndex + '.gif" />');
+                result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebSocket/images/emoji/' + emojiIndex + '.gif" />');
             };
         };
         return result;
