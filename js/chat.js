@@ -3,6 +3,59 @@ $(function(){
 
 	$('.chat-wrap').hide();
 	
+	var headContainer = document.getElementById('headportrait'),
+		headFragment = document.createDocumentFragment();
+	
+		for (let i = 1; i <= 14; i++) {
+				
+			var headItem = document.createElement('img');
+	
+			headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
+		
+			headItem.num = i;
+		
+			headFragment.appendChild(headItem);
+			
+		};
+		headContainer.appendChild(headFragment);
+
+	/*选择头像*/
+		
+		//点击头像按钮时
+		document.getElementById('head-btn').addEventListener('click', function(e) {
+			var headportrait = document.getElementById('headportrait');
+
+			if(headportrait.style.display != 'block'){
+				headportrait.style.display = 'block';
+			}else{
+				headportrait.style.display = 'none';
+			}
+			e.stopPropagation();
+		}, false);
+	
+	
+		var headnum = 1;
+	
+		document.getElementById('main').addEventListener('click', function(e) {
+			//获取被点击的头像
+			var target = e.target;
+			console.log(target);
+			if (target.nodeName.toLowerCase() == 'img') {
+				headnum = e.target.num;
+				headportrait.style.display = 'none';
+			}
+			else {
+				headportrait.style.display = 'none';
+			};
+		}, false);
+
+
+		$('.login-btn').click(function(){
+			if(document.getElementById('loginIP').value)
+			ip = document.getElementById('loginIP').value;
+			mian();
+		});
+
 	function mian(){
 		/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
 		var socket = io('ws://'+ip+':8081');
@@ -18,22 +71,6 @@ $(function(){
 			}
 	
 		$('.chat-wrap').hide();
-	
-		var headContainer = document.getElementById('headportrait'),
-		headFragment = document.createDocumentFragment();
-	
-		for (let i = 1; i <= 14; i++) {
-				
-			var headItem = document.createElement('img');
-	
-			headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
-		
-			headItem.num = i;
-		
-			headFragment.appendChild(headItem);
-			
-		};
-		headContainer.appendChild(headFragment);
 	
 	
 		var sendI = document.getElementById("sendImage");
@@ -65,32 +102,7 @@ $(function(){
 			}
 		})
 	
-		/*选择头像*/
 		
-		//点击头像按钮时
-		document.getElementById('head-btn').addEventListener('click', function(e) {
-			var headportrait = document.getElementById('headportrait');
-			if(headportrait.style.display != 'block'){
-				headportrait.style.display = 'block';
-			}else{
-				headportrait.style.display = 'none';
-			}
-			e.stopPropagation();
-		}, false);
-	
-	
-		var headnum = 1;
-	
-		document.getElementById('headportrait').addEventListener('click', function(e) {
-			//获取被点击的表情
-			var target = e.target;
-			console.log(target);
-			if (target.nodeName.toLowerCase() == 'img') {
-				headnum = e.target.num;
-			};
-		}, false);
-	
-	
 		/*发送消息*/
 		$('.sendBtn').click(function(){
 			sendMessage()
@@ -343,11 +355,7 @@ $(function(){
 	
 	
 	
-	$('.login-btn').click(function(){
-		if(document.getElementById('loginIP').value)
-		ip = document.getElementById('loginIP').value;
-		mian();
-	});
+	
 })
 
 
