@@ -1,67 +1,24 @@
 $(function(){
-	var ip = '47.94.86.217';
-
+	
+	var socket,
+	    ip = '47.94.86.217', //默认为阿里云IP
+		headnum = 1;
+		
+	/*聊天界面隐藏*/
 	$('.chat-wrap').hide();
 	
-	var headContainer = document.getElementById('headportrait'),
-		headFragment = document.createDocumentFragment();
+	/*登录界面函数*/
+	login();
 	
-		for (let i = 1; i <= 14; i++) {
-				
-			var headItem = document.createElement('img');
-	
-			headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
+	/*主函数*/
+	function main(){
 		
-			headItem.num = i;
-		
-			headFragment.appendChild(headItem);
-			
-		};
-		headContainer.appendChild(headFragment);
-
-	/*选择头像*/
-		
-		//点击头像按钮时
-		document.getElementById('head-btn').addEventListener('click', function(e) {
-			var headportrait = document.getElementById('headportrait');
-
-			if(headportrait.style.display != 'block'){
-				headportrait.style.display = 'block';
-			}else{
-				headportrait.style.display = 'none';
-			}
-			e.stopPropagation();
-		}, false);
-	
-	
-		var headnum = 1;
-	
-		document.getElementById('main').addEventListener('click', function(e) {
-			//获取被点击的头像
-			var target = e.target;
-			console.log(target);
-			if (target.nodeName.toLowerCase() == 'img') {
-				headnum = e.target.num;
-				headportrait.style.display = 'none';
-			}
-			else {
-				headportrait.style.display = 'none';
-			};
-		}, false);
-
-
-		$('.login-btn').click(function(){
-			if(document.getElementById('loginIP').value)
-			ip = document.getElementById('loginIP').value;
-			mian();
-		});
-
-	function mian(){
 		/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
-		var socket = io('ws://'+ip+':8081');
+		socket = io('ws://'+ip+':8081');
 		/*定义用户名*/
 		var uname = null;
 
+		//当名字不为空时，去掉两头空格并发给服务端
 		uname = $.trim($('#loginName').val());
 			if(uname){
 				/*向服务端发送登录事件*/
@@ -72,19 +29,20 @@ $(function(){
 	
 		$('.chat-wrap').hide();
 	
-	
+		//绑定鼠标事件
 		var sendI = document.getElementById("sendImage");
 		sendI.onmouseover = over;
-		
 		sendI.onmouseleave = leave;
-		
+		/**
+		 * 由于button和input重叠无法触发button的hover事件
+		 * 所以绑定两个事件来模拟button的hover事件
+		 */
 		function over(){
 			console.log("mouseover")
 			var fake = document.getElementById("fake");
 			fake.setAttribute("style","color:#fff;line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;background-color:#31b0d5;border-color:#269abc");
 			
 		}
-	
 		function leave(){
 			var fake = document.getElementById("fake");
 			fake.setAttribute("style","line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;")
@@ -105,23 +63,11 @@ $(function(){
 		
 		/*发送消息*/
 		$('.sendBtn').click(function(){
-			sendMessage()
+			sendMessage(socket);
 		});
 	
-		$(document).keydown(function(event){            //键盘事件
-			if(event.keyCode == 13 && $('#chat-wrap').css("display")==="none"){                    //回车
-				uname = $.trim($('#loginName').val());
-			if(uname){
-				/*向服务端发送登录事件*/
-				socket.emit('login',{username:uname})
-			}else{
-				alert('请输入昵称')
-			}
-			}
-			else if(event.keyCode == 13 && $('#chat-wrap').css("display")!=="none"){
-				sendMessage();
-			}
-		})
+		/*键盘回车事件*/
+		keydown();
 	
 		/*登录成功*/
 		socket.on('loginSuccess',function(data){
@@ -160,122 +106,7 @@ $(function(){
 			}
 		})
 	
-		/*隐藏登录界面 显示聊天界面*/
-		function checkin(data){
-			$('.login-wrap').hide('slow');
-			var emojiContainer = document.getElementById('emojiWrapper'),
-				docFragment = document.createDocumentFragment();
-			for (let i = 0; i < 60; i++) {
-				
-				var emojiItem = document.createElement('img');
-				emojiItem.src = '../Chatroom-WebSocket/images/emoji/' + i + '.gif';
-				emojiItem.title = i;
-				emojiItem.num = i;
-			
-				docFragment.appendChild(emojiItem);
-				
-			};
-			emojiContainer.appendChild(docFragment);
-			$('.chat-wrap').show('slow');
-		}
-	
-		
-	
-		/*发送消息*/
-		function sendMessage(){
-			var txt = $('#sendtxt').val();
-			$('#sendtxt').val('');
-			if(txt){
-				socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
-			}
-		}
-	
-		/*显示消息*/
-		function showMessage(data){
-			var html
-			msg = showEmoji(data.message);
-			if(data.username === uname){
-				//html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="abs uname">'+ data.date +'</span><span class="message fr">'+ msg +'</span></div>'
-				html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ headnum +' fr"></span><span class="fr message">'+msg+'</span></div>'
-			}else{
-				html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ data.headnum +' fl"></span><span class="fl message">'+msg+'</span></div>'
-			}
-			$('.chat-con').append(html);
-			if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
-				scrollToEnd();            
-			}
-										   
-		}
-	
-		//将页面下拉到最新消息处
-		function scrollToEnd(){
-			var div = document.getElementsByTagName("div");
-				div_length = div.length-4;
-		
-			div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
-	
-		}
-	
-		//判断当有新信息来时，用户是否在页面底端
-		function isNewInWindow(){
-			var div = document.getElementsByTagName("div");
-			div_length = div.length-5;
-	
-			if(isInWindow(div[div_length])){
-				return true;
-			}
-			return false;
-		}
-	
-		//判定元素是否在界面内
-		function isInWindow(x){		
-			if(x.getBoundingClientRect().top > window.innerHeight){
-				console.log("down");
-				return false;
-			}
-			else if(x.getBoundingClientRect().bottom < 0){
-				console.log("up");
-				return false;
-			}
-			return true;
-		}
-		//分析文字并用表情包替换emoji
-		function showEmoji(msg) {
-			var match, result = msg,
-				reg = /\[emoji:\d+\]/g,
-				emojiIndex,
-				totalEmojiNum = document.getElementById('emojiWrapper').children.length;
-			while (match = reg.exec(msg)) {
-				emojiIndex = match[0].slice(7, -1);
-				if (emojiIndex > totalEmojiNum) {
-					result = result.replace(match[0], '[X]');
-				} else {
-					result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebSocket/images/emoji/' + emojiIndex + '.gif" />');
-				};
-			};
-			return result;
-		}
-	
-		//显示图片
-		function showImage(data){
-			var msgToDisplay = document.createElement('p');
-			msgToDisplay.style.color = '#000';
-			if(data.username === uname){
-				html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+headnum+' fr" style="margin-left: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: right"/></div>'
-				
-			}else{
-				html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+data.headnum+' fl" style="margin-right: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
-				
-			}
-			$('.chat-con').append(html);
-			if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
-				scrollToEnd();
-			}
-		}
-	
 		document.getElementById('toNewMessage').style.display = "none";
-	
-	
 	
 		//点击表情按钮时
 		document.getElementById('emoji').addEventListener('click', function(e) {
@@ -288,6 +119,7 @@ $(function(){
 			e.stopPropagation();
 		}, false);
 		
+		/*如果点击的不是头像界面或表情界面，则将其隐藏*/
 		document.body.addEventListener('click', function(e) {
 			if($('#chat-wrap').css("display")==="none") 				//位于登录界面
 			{
@@ -304,19 +136,18 @@ $(function(){
 			}
 		});
 		
+		//emoji
 		document.getElementById('emojiWrapper').addEventListener('click', function(e) {
-			//获取被点击的表情
+			//获取被点击的对象
 			var target = e.target;
 			console.log(target);
-			if (target.nodeName.toLowerCase() == 'img') {
+			if (target.nodeName.toLowerCase() == 'img') {   //如果是表情图像则发送
 				var sendtxt = document.getElementById('sendtxt');
 				sendtxt.focus();
 				sendtxt.value = sendtxt.value + '[emoji:' + target.num + ']';
 			};
 		}, false);
 		
-	
-	
 		//页面滚动事件
 		window.onscroll = function(){
 		
@@ -332,7 +163,9 @@ $(function(){
 			  toNewMessage.onclick = function(){ //点击向下按钮时触发的点击事件
 				scrollToEnd(); //页面移动到顶部
 			  }
-			}
+		}
+		
+		//图片发送
 		document.getElementById('sendImage').addEventListener('change', function() {
 			//检查是否有文件被选中
 			if (this.files.length != 0) {
@@ -353,9 +186,202 @@ $(function(){
 	
 	}
 	
+	/*登录界面函数*/
+	function login(){
+
+		loadHeadPortrait(); //头像初始化
+		
+		//点击头像按钮时
+	    document.getElementById('head-btn').addEventListener('click', function(e) {
+			var headportrait = document.getElementById('headportrait');
+			if(headportrait.style.display != 'block'){
+				headportrait.style.display = 'block';
+			}else{
+				headportrait.style.display = 'none';
+			}
+			e.stopPropagation();
+		}, false);
+		
+		/*键盘回车事件*/
+		keydown();
+		
+		document.getElementById('main').addEventListener('click', function(e) {
+			//获取被点击的头像
+			var target = e.target;
+			console.log(target);
+			if (target.nodeName.toLowerCase() == 'img') {
+				headnum = e.target.num;
+				headportrait.style.display = 'none';
+			}
+			else {
+				headportrait.style.display = 'none';
+			};
+		}, false);
+
+
+		//点击登录后，确认IP地址
+		$('.login-btn').click(function(){
+			if(document.getElementById('loginIP').value)
+			ip = document.getElementById('loginIP').value;
+			//进入主函数
+			main();
+		});
+	}
+
+	/*头像初始化*/
+	function loadHeadPortrait(){
+		var headContainer = document.getElementById('headportrait'),    //获取头像容器元素
+		headFragment = document.createDocumentFragment();			//创建文档块
+
+		for (let i = 1; i <= 14; i++) {								//将头像存入文档块
+				
+			var headItem = document.createElement('img');
+
+			headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
+		
+			headItem.num = i;
+		
+			headFragment.appendChild(headItem);
+			
+		};
+		headContainer.appendChild(headFragment);					//统一导入头像容器
+	}
+
+	/*键盘回车事件*/
+	function keydown(){
+		
+		$(document).keydown(function(event){            
+			/*回车事件*/
+			if(event.keyCode == 13 && $('#chat-wrap').css("display")==="none"){   //登录界面                
+				uname = $.trim($('#loginName').val());
+				if(uname){
+					if(document.getElementById('loginIP').value)
+					ip = document.getElementById('loginIP').value;
+					//进入主函数
+					main();		
+				}else{
+					alert('请输入昵称')
+				}
+			}
+			else if(event.keyCode == 13 && $('#chat-wrap').css("display")!=="none"){	//聊天界面
+				sendMessage(socket);
+			}
+		})
+	}
+
+	/*隐藏登录界面 显示聊天界面*/
+	function checkin(data){
+		$('.login-wrap').hide('slow');
+		var emojiContainer = document.getElementById('emojiWrapper'),
+			docFragment = document.createDocumentFragment();
+		for (let i = 0; i < 60; i++) {
+			
+			var emojiItem = document.createElement('img');
+			emojiItem.src = '../Chatroom-WebSocket/images/emoji/' + i + '.gif';
+			emojiItem.title = i;
+			emojiItem.num = i;
+		
+			docFragment.appendChild(emojiItem);
+			
+		};
+		emojiContainer.appendChild(docFragment);
+		$('.chat-wrap').show('slow');
+	}
+
+	/*发送消息*/
+	function sendMessage(socket){
+			var txt = $('#sendtxt').val();
+			$('#sendtxt').val('');
+			if(txt){
+				socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
+			}
+	}
 	
+	/*显示消息*/
+	function showMessage(data){
+			var html
+			msg = showEmoji(data.message);
+			if(data.username === uname){
+				html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ headnum +' fr"></span><span class="fr message">'+msg+'</span></div>'
+			}else{
+				html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+ data.headnum +' fl"></span><span class="fl message">'+msg+'</span></div>'
+			}
+			$('.chat-con').append(html);
+			if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
+				scrollToEnd();            
+			}
+										   
+	}
 	
+	/*将页面下拉到最新消息处*/
+	function scrollToEnd(){
+			var div = document.getElementsByTagName("div");
+				div_length = div.length-4;
+		
+			div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 	
+	}
+	
+	/*判断当有新信息来时，用户是否在页面底端*/
+	function isNewInWindow(){
+			var div = document.getElementsByTagName("div");
+			div_length = div.length-5;
+	
+			if(isInWindow(div[div_length])){
+				return true;
+			}
+			return false;
+	}
+	
+	/*判定元素是否在界面内*/
+	function isInWindow(x){		
+			if(x.getBoundingClientRect().top > window.innerHeight){
+				console.log("down");
+				return false;
+			}
+			else if(x.getBoundingClientRect().bottom < 0){
+				console.log("up");
+				return false;
+			}
+			return true;
+	}
+		
+	/*分析文字并用表情包替换emoji*/
+	function showEmoji(msg) {
+			var match, result = msg,
+				reg = /\[emoji:\d+\]/g,
+				emojiIndex,
+				totalEmojiNum = document.getElementById('emojiWrapper').children.length;
+			while (match = reg.exec(msg)) {
+				emojiIndex = match[0].slice(7, -1);
+				if (emojiIndex > totalEmojiNum) {
+					result = result.replace(match[0], '[X]');
+				} else {
+					result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebSocket/images/emoji/' + emojiIndex + '.gif" />');
+				};
+			};
+			return result;
+	}
+	
+	/*显示图片*/
+	function showImage(data){
+			var msgToDisplay = document.createElement('p');
+			msgToDisplay.style.color = '#000';
+			if(data.username === uname){
+				html='<div class="chat-item item-right clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+headnum+' fr" style="margin-left: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: right"/></div>'
+				
+			}else{
+				html='<div class="chat-item item-left clearfix rela"><span class="abs uname">'+data.username + '&nbsp;'+'&nbsp;'+'&nbsp;' + data.date+'</span><span class="img'+data.headnum+' fl" style="margin-right: 10px;"></span><img src="' + data.image + '" style = "margin-top:20px; max-width: 200px;max-height: 200px;float: left"/></div>'
+				
+			}
+			$('.chat-con').append(html);
+			if(isNewInWindow()){           //当用户正在界面底端时，实时显示最新消息，当用户在查看历史消息时，不跳转到最新消息
+				scrollToEnd();
+			}
+	}
+
 })
+
+
 
 
