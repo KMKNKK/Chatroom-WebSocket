@@ -22,14 +22,14 @@
 			  <input class="form-control input-lg" type="text" placeholder="输入IP地址，默认为47.94.86.217" id="loginIP">
 			  <button type="button" class="btn btn-info btn-lg btn-block login-btn">登录</button>
 			  <button type="button" class="btn btn-info btn-lg btn-block headportrait-btn" id="head-btn">选择头像</button>
-			  <div id="headportrait" class="headportrait-show" style="margin-left: -6px;"></div>
+			  <div id="headportrait" class="headportrait-show"></div>
 			</div>
 				
 		</div>
 	
 	<div class="chat-wrap" id="chat-wrap">
 		
-		<p class="bg-primary" style="display:block ;position: fixed; z-index:100; width: 100%; height: 45px; font-size:20px; line-height: 45px; opacity:0.8;">多人聊天室</p>
+		<p class="bg-primary" id="chatroom-head">多人聊天室</p>
 
 		<div class="chat-con clearfix"></div>
 		
@@ -40,18 +40,9 @@
 		
 		<div class="bottom col-md-12">
 			<input class="form-control input-lg" type="text" id="sendtxt">
-			<input id="emoji" type="button" value="表 情" class="btn btn-info" title="emoji" style="    
-					line-height: 100%;
-					width: 8%;
-					height: 50px;
-					margin-right: -50px;">
+			<input id="emoji" type="button" value="表 情" class="btn btn-info" title="emoji">
 			<label for="sendImage" class="imageLable">
-				<input id="fake" type="button" value="图  片" class="btn btn-info" style="
-					line-height: 100%;
-					width: 195.5%;
-					height: 50px;
-					margin-left: -1px;
-					">
+				<input id="fake" type="button" value="图  片" class="btn btn-info">
 				<input id="sendImage" type="file" value="image">
 			</label>
 			
