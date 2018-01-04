@@ -2,7 +2,8 @@ $(function(){
 	
 	var socket,
 	    ip = '47.94.86.217', //默认为阿里云IP
-		headnum = 1;
+		headnum = 1,
+		uname = null;
 		
 	/*聊天界面隐藏*/
 	$('.chat-wrap').hide();
@@ -15,9 +16,7 @@ $(function(){
 		
 		/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
 		socket = io('ws://'+ip+':8081');
-		/*定义用户名*/
-		var uname = null;
-
+		
 		//当名字不为空时，去掉两头空格并发给服务端
 		uname = $.trim($('#loginName').val());
 			if(uname){
