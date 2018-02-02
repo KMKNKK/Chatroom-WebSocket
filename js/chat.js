@@ -1,7 +1,7 @@
 $(function(){
 	
 	var socket,
-	    ip = '47.94.86.217', //默认为阿里云IP
+	    ip = 'localhost', //默认为localhost，可自行修改为你的服务端IP
 		headnum = 1,
 		uname = null;
 		

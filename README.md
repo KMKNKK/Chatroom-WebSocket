@@ -41,7 +41,7 @@ Instead of forcing a jump to a new message when the user is looking at a histori
 花了两天时间，翻新了项目:
 - 增加了emoji和发送图片功能
 - 增加了头像选择功能
-- 修改乐众多CSS优化了用户体验
+- 修改了众多CSS优化了用户体验
 - 换了一个更适合自适应屏幕的聊天背景
 - 加了一个logo
 
