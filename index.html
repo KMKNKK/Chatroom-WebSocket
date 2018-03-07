@@ -5,22 +5,18 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<title>聊天室</title>
 	
-		<link href="new/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	
+	<link href="new/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/chat.css" id="chat-css">
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/socket.io.js"></script>
-	<script type="text/javascript" src="js/chat.js"></script>
 </head>
 <body>
 	
 		<div class="login-wrap" style="overflow:hidden" id="main">
-			<div class="login-con" >
-			  <img src="images/logo.png" height="200px">
+			<div class="login-con" align="center">
+			  <img src="images/logo.png" height="200px" >
 			  <h3>用户登录</h3>
 			  <input class="form-control input-lg" type="text" placeholder="输入你的尊姓大名" id="loginName">
 			  <input class="form-control input-lg" type="text" placeholder="输入IP地址，若不输入则默认为localhost" id="loginIP">
-			  <button type="button" class="btn btn-info btn-lg btn-block login-btn">登录</button>
+			  <button type="button" class="btn btn-info btn-lg btn-block login-btn" id="click-to-login">登录</button>
 			  <button type="button" class="btn btn-info btn-lg btn-block headportrait-btn" id="head-btn">选择头像</button>
 			  <div id="headportrait" class="headportrait-show"></div>
 			</div>
@@ -38,20 +34,26 @@
 			<img src="images/toNewMessage.png" width="40" height="40" class="col-xs-4" id="toNewMessage">
 		</div>
 		
-		<div class="bottom col-md-12">
-			<input class="form-control input-lg" type="text" id="sendtxt">
-			<input id="emoji" type="button" value="表 情" class="btn btn-info" title="emoji">
-			<label for="sendImage" class="imageLable">
-				<input id="fake" type="button" value="图  片" class="btn btn-info">
-				<input id="sendImage" type="file" value="image">
-			</label>
+		<div class="bottom col-md-12" id="footer">
 			
 			<button type="button" class="btn btn-success btn-lg btn-block sendBtn">发送</button>
+
+			<div class="adapt-sendImage">
+			<input id="sendImage" type="file" value="image">
+			<input id="fake" type="button" value="图 片" class="btn btn-info" onclick="clickImageButton();">
+			</div>
+
+			<input id="emoji" type="button" value="表 情" class="btn btn-info" title="emoji"> 
+			<input class="form-control input-lg" type="text" id="sendtxt">
 		</div>
 	  
 	</div>
 
+	<script src="js/image-button.js"></script>
 	<script src="new/jquery-3.2.1.min.js"></script>
-    <script src="new/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="new/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/socket.io.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
 </body>
 </html>

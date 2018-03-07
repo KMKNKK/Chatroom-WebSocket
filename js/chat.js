@@ -28,26 +28,7 @@ $(function(){
 	
 		$('.chat-wrap').hide();
 	
-		//绑定鼠标事件
-		var sendI = document.getElementById("sendImage");
-		sendI.onmouseover = over;
-		sendI.onmouseleave = leave;
-		/**
-		 * 由于button和input重叠无法触发button的hover事件
-		 * 所以绑定两个事件来模拟button的hover事件
-		 */
-		function over(){
-			console.log("mouseover")
-			var fake = document.getElementById("fake");
-			fake.setAttribute("style","color:#fff;line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;background-color:#31b0d5;border-color:#269abc");
-			
-		}
-		function leave(){
-			var fake = document.getElementById("fake");
-			fake.setAttribute("style","line-height: 100%;width: 195.5%;height: 50px;margin-left: -1px;")
-		}
-	
-	
+		
 		/*登录*/
 		$('.login-btn').click(function(){
 			uname = $.trim($('#loginName').val());
