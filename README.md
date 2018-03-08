@@ -11,15 +11,15 @@ Here are some previewing effects:
 <br/>
 -  First you enter index.html, you will see the entrance, you need to enter your name to login.
 <br/>
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/chat1.png">
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/chat2.png">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/chat1.png">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/chat2.png">
 <br/>
 <br/>
 -  When you log in successfully, you can chat with other people who are also logged into the chat room.
 <br/>
 <br/>
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/chat3.png">
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/chat4.png">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/chat3.png">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/chat4.png">
 
 ----------------------------
 2017.12.21 更新 update
@@ -45,5 +45,9 @@ Instead of forcing a jump to a new message when the user is looking at a histori
 - 换了一个更适合自适应屏幕的聊天背景
 - 加了一个logo
 
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/6.gif">
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/master/img_read/5.gif">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/6.gif">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/5.gif">
+
+-----------------------------
+2018.3 更新:
+优化了图片上传模块
