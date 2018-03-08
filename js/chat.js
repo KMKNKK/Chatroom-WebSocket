@@ -28,7 +28,7 @@ $(function(){
 	
 		$('.chat-wrap').hide();
 	
-		
+
 		/*登录*/
 		$('.login-btn').click(function(){
 			uname = $.trim($('#loginName').val());
@@ -150,18 +150,20 @@ $(function(){
 			//检查是否有文件被选中
 			if (this.files.length != 0) {
 				//获取文件并用FileReader进行读取
-				var file = this.files[0],
-					reader = new FileReader();
-				if (!reader) {
-					return;
+				for(let i = 0;i<this.files.length;i++){
+					var file = this.files[i],
+						reader = new FileReader();
+					if (!reader) {
+						return;
+					};
+					reader.onload = function(e) {
+						//读取成功，发送到服务器
+						socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
+						
+					};
+					reader.readAsDataURL(file);
 				};
-				reader.onload = function(e) {
-					//读取成功，发送到服务器
-					socket.emit('sendImg',{username:uname,image: e.target.result,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
-					
-				};
-				reader.readAsDataURL(file);
-			};
+		    };
 		}, false);
 	
 	}
