@@ -20,6 +20,7 @@ html,body{width:100%;height: 100%;}
     text-align:center;
 }
 .login-con{
+    position: relative;
     display: block;
     margin: auto;
     margin-top: 5%;
@@ -40,7 +41,7 @@ html,body{width:100%;height: 100%;}
 .bottom input{width: 63%; height: 50px; line-height: 50px; float:left;border:none;}
 .bottom button{width: 20%;height: 50px; float: right; border:none; background:#459d36;color: #fff; opacity:0.8;}
 
-.chat-item{width:100%; margin-bottom:20px;}
+.chat-item{width:100%; margin-bottom:20px; overflow-wrap: break-word;}
 .item-right .message{background: #69a71e; color: #fff; margin-top:20px;}
 .item-right .uname{font-size:12px; right:65px; top:0; }
 .item-right .img{margin-left:10px;}
@@ -113,13 +114,12 @@ html,body{width:100%;height: 100%;}
 
 #headportrait {
     border-radius: 5px;
-    margin-left: -6px;
     display: none;
-    width: 500px;
-    bottom: 3px;
+    width: 100%;
     position: absolute;
     background-color: #28a6a499;
     box-shadow: 0 0 10px #555;
+    z-index: 10;
 }
 #headportrait img {
     margin: 2px;
@@ -129,6 +129,20 @@ html,body{width:100%;height: 100%;}
 }
 #headportrait img:hover {
     background-color: rgba(31, 180, 226, 0.815);
+}
+.showHeadprotrait {
+    position: relative;
+    width: 100%;
+}
+.showHeadprotrait p{
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+}
+#defaultHead {
+    margin-top: 1%;
+    width: 20%;
+    height: 20%;
 }
 
 .items {

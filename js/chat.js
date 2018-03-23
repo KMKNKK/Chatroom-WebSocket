@@ -1,9 +1,10 @@
 $(function(){
 	
 	var socket,
-	    ip = 'localhost', //默认为localhost，可自行修改为你的服务端IP
-		headnum = 1,
-		uname = null;
+	    ip = 'localhost', // 默认为localhost，可自行修改为你的服务端IP
+		headnum = 1,      // 用户默认头像
+		uname = null;     // 初始用户名为空
+
 		
 	/*聊天界面隐藏*/
 	$('.chat-wrap').hide();
@@ -190,9 +191,9 @@ $(function(){
 		document.getElementById('main').addEventListener('click', function(e) {
 			//获取被点击的头像
 			var target = e.target;
-			console.log(target);
 			if (target.nodeName.toLowerCase() == 'img') {
 				headnum = e.target.num;
+				document.getElementById('defaultHead').setAttribute('src','./images/user/user'+ headnum +'.jpg');				
 				headportrait.style.display = 'none';
 			}
 			else {

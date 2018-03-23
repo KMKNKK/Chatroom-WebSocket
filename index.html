@@ -4,14 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<title>聊天室</title>
-	
 	<link href="new/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/chat.css" id="chat-css">
 </head>
 <body>
 	
 		<div class="login-wrap" style="overflow:hidden" id="main">
-			<div class="login-con" align="center">
+			<div class="login-con" align="center" id="login-main">
 			  <img src="images/logo.png" height="200px" >
 			  <h3>用户登录</h3>
 			  <input class="form-control input-lg" type="text" placeholder="输入你的尊姓大名" id="loginName">
@@ -19,6 +18,10 @@
 			  <button type="button" class="btn btn-info btn-lg btn-block login-btn" id="click-to-login">登录</button>
 			  <button type="button" class="btn btn-info btn-lg btn-block headportrait-btn" id="head-btn">选择头像</button>
 			  <div id="headportrait" class="headportrait-show"></div>
+			  <div class="showHeadprotrait">
+				  <p>你当前的头像：</p>
+				  <img src="./images/user/user1.jpg" alt="用户头像" srcset="" id="defaultHead">
+			  </div>
 			</div>
 				
 		</div>
