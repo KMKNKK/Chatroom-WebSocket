@@ -66,7 +66,7 @@ html,body{width:100%;height: 100%;}
 
 
 /*聊天室顶栏*/
-#chatroom-head {
+header {
     display: block;
     position: fixed; 
     z-index: 100; 
@@ -94,10 +94,9 @@ html,body{width:100%;height: 100%;}
 
 #emojiWrapper {
     border-radius: 5px;
-    margin-left: 186.5px;
     display: none;
-    width: 500px;
-    bottom: 3px;
+    width: 100vw;
+    bottom: 50px;
     position: absolute;
     background-color: #28a6a499;
     box-shadow: 0 0 10px #555;
@@ -180,7 +179,7 @@ html,body{width:100%;height: 100%;}
     width: 15%;
     margin-right: 0.5%;
 }
-#footer {
+footer {
     overflow: hidden;
     padding-right: 5px;
 }

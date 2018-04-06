@@ -8,13 +8,12 @@
 	<link type="text/css" rel="stylesheet" href="css/chat.css" id="chat-css">
 </head>
 <body>
-	
 		<div class="login-wrap" style="overflow:hidden" id="main">
 			<div class="login-con" align="center" id="login-main">
 			  <img src="images/logo.png" height="200px" >
 			  <h3>用户登录</h3>
 			  <input class="form-control input-lg" type="text" placeholder="输入你的尊姓大名" id="loginName">
-			  <input class="form-control input-lg" type="text" placeholder="输入IP地址，若不输入则默认为localhost" id="loginIP">
+			  <input class="form-control input-lg" type="text" placeholder="输入IP地址，若不输入则默认为我的服务器" id="loginIP">
 			  <button type="button" class="btn btn-info btn-lg btn-block login-btn" id="click-to-login">登录</button>
 			  <button type="button" class="btn btn-info btn-lg btn-block headportrait-btn" id="head-btn">选择头像</button>
 			  <div id="headportrait" class="headportrait-show"></div>
@@ -28,27 +27,25 @@
 	
 	<div class="chat-wrap" id="chat-wrap">
 		
-		<p class="bg-primary" id="chatroom-head">多人聊天室</p>
+		<header class="bg-primary">多人聊天室</header>
 
 		<div class="chat-con clearfix"></div>
 		
 		<div class="to-new-message row" >
-			<div id="emojiWrapper" class="emoji-show col-xs-8"></div>
 			<img src="images/toNewMessage.png" width="40" height="40" class="col-xs-4" id="toNewMessage">
 		</div>
-		
-		<div class="bottom col-md-12" id="footer">
-			
+
+		<div id="emojiWrapper" class="emoji-show col-xs-8"></div>
+
+		<footer class="bottom col-md-12">
 			<button type="button" class="btn btn-success btn-lg btn-block sendBtn">发送</button>
-
 			<div class="adapt-sendImage">
-			<input id="sendImage" type="file" value="image" multiple="multiple" accept="image/*">
-			<input id="fake" type="button" value="图 片" class="btn btn-info" onclick="clickImageButton();">
+				<input id="sendImage" type="file" value="image" multiple="multiple" accept="image/*">
+				<input id="fake" type="button" value="图 片" class="btn btn-info" onclick="clickImageButton();">
 			</div>
-
 			<input id="emoji" type="button" value="表 情" class="btn btn-info" title="emoji"> 
 			<input class="form-control input-lg" type="text" id="sendtxt">
-		</div>
+		</footer>
 	  
 	</div>
 

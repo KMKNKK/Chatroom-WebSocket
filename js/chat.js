@@ -1,9 +1,9 @@
 $(function(){
 	
 	var socket,
-	    ip = 'localhost', // 默认为localhost，可自行修改为你的服务端IP
-		headnum = 1,      // 用户默认头像
-		uname = null;     // 初始用户名为空
+	    ip = '47.94.86.217', // 可自行修改为你的服务端IP
+		headnum = 1,         // 用户默认头像
+		uname = null;        // 初始用户名为空
 
 		
 	/*聊天界面隐藏*/
@@ -257,7 +257,7 @@ $(function(){
 		$('.login-wrap').hide('slow');
 		var emojiContainer = document.getElementById('emojiWrapper'),
 			docFragment = document.createDocumentFragment();
-		for (let i = 0; i < 60; i++) {
+		for (let i = 0; i < 38; i++) {
 			
 			var emojiItem = document.createElement('img');
 			emojiItem.src = '../Chatroom-WebSocket/images/emoji/' + i + '.gif';
@@ -299,8 +299,7 @@ $(function(){
 	/*将页面下拉到最新消息处*/
 	function scrollToEnd(){
 			var div = document.getElementsByTagName("div");
-				div_length = div.length-4;
-		
+				div_length = div.length-5;
 			div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 	
 	}
@@ -308,7 +307,7 @@ $(function(){
 	/*判断当有新信息来时，用户是否在页面底端*/
 	function isNewInWindow(){
 			var div = document.getElementsByTagName("div");
-			div_length = div.length-5;
+			div_length = div.length-6;
 	
 			if(isInWindow(div[div_length])){
 				return true;
