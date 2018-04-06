@@ -203,8 +203,8 @@ $(function(){
 
 		//点击登录后，确认IP地址
 		$('.login-btn').click(function(){
-			if(document.getElementById('loginIP').value)
-			ip = document.getElementById('loginIP').value;
+			//if(document.getElementById('loginIP').value)
+			//ip = document.getElementById('loginIP').value;
 			//进入主函数
 			main();
 		});
