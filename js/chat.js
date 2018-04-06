@@ -1,3 +1,6 @@
+/*聊天界面隐藏*/
+$('.chat-wrap').hide();
+
 $(function(){
 	
 	var socket,
@@ -5,10 +8,6 @@ $(function(){
 		headnum = 1,         // 用户默认头像
 		uname = null;        // 初始用户名为空
 
-		
-	/*聊天界面隐藏*/
-	$('.chat-wrap').hide();
-	
 	/*登录界面函数*/
 	login();
 	
@@ -193,7 +192,7 @@ $(function(){
 			var target = e.target;
 			if (target.nodeName.toLowerCase() == 'img') {
 				headnum = e.target.num;
-				document.getElementById('defaultHead').setAttribute('src','./images/user/user'+ headnum +'.jpg');				
+				document.getElementById('defaultHead').setAttribute('src','http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user'+ headnum +'.jpg');				
 				headportrait.style.display = 'none';
 			}
 			else {
@@ -220,7 +219,7 @@ $(function(){
 				
 			var headItem = document.createElement('img');
 
-			headItem.src = '../Chatroom-WebSocket/images/user/' + 'user' + i + '.jpg';
+			headItem.src = 'http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user' + i + '.jpg';
 		
 			headItem.num = i;
 		
@@ -257,10 +256,12 @@ $(function(){
 		$('.login-wrap').hide('slow');
 		var emojiContainer = document.getElementById('emojiWrapper'),
 			docFragment = document.createDocumentFragment();
+
+		// 初始化加载emoji
 		for (let i = 0; i < 38; i++) {
 			
 			var emojiItem = document.createElement('img');
-			emojiItem.src = '../Chatroom-WebSocket/images/emoji/' + i + '.gif';
+			emojiItem.src = 'http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + i + '.gif';
 			emojiItem.title = i;
 			emojiItem.num = i;
 		
@@ -339,7 +340,7 @@ $(function(){
 				if (emojiIndex > totalEmojiNum) {
 					result = result.replace(match[0], '[X]');
 				} else {
-					result = result.replace(match[0], '<img class="emoji" src="../Chatroom-WebSocket/images/emoji/' + emojiIndex + '.gif" />');
+					result = result.replace(match[0], '<img class="emoji" src="http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + emojiIndex + '.gif" />');
 				};
 			};
 			return result;
@@ -364,6 +365,8 @@ $(function(){
 
 })
 
-
+function clickImageButton() {
+    document.getElementById("sendImage").click();
+}
 
 
