@@ -237,8 +237,8 @@ $(function(){
 			if(event.keyCode == 13 && $('#chat-wrap').css("display")==="none"){   //登录界面                
 				uname = $.trim($('#loginName').val());
 				if(uname){
-					if(document.getElementById('loginIP').value)
-					ip = document.getElementById('loginIP').value;
+					//if(document.getElementById('loginIP').value)
+					//ip = document.getElementById('loginIP').value;
 					//进入主函数
 					main();		
 				}else{
