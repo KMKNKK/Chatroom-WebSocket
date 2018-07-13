@@ -274,7 +274,7 @@ $(function(){
 
 	/*发送消息*/
 	function sendMessage(socket){
-			var txt = $('#sendtxt').val();
+			var txt = filterXSS($('#sendtxt').val());
 			$('#sendtxt').val('');
 			if(txt){
 				socket.emit('sendMessage',{username:uname,message:txt,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
