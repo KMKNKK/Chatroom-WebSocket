@@ -10,20 +10,20 @@ $(function(){
 
 	/*登录界面函数*/
 	login();
+
+	/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
+	socket = io('ws://'+ ip +':8081');
 	
 	/*主函数*/
 	function main(){
-		
-		/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
-		socket = io('ws://'+ip+':8081');
-		
+			
 		//当名字不为空时，去掉两头空格并发给服务端
 		uname = $.trim($('#loginName').val());
 			if(uname){
 				/*向服务端发送登录事件*/
 				socket.emit('login',{username:uname})
 			}else{
-				alert('请输入昵称')
+				alert('请输入昵称');
 			}
 	
 		$('.chat-wrap').hide();
@@ -130,19 +130,23 @@ $(function(){
 		
 		//页面滚动事件
 		window.onscroll = function(){
-		
-			  if( isNewInWindow() ) { //显示图片
+
+			let top = window.pageYOffset || document.documentElement.scrollTop;
+
+			if( isNewInWindow() || top === 0) { 
+				//隐藏图片
 				document.getElementById('toNewMessage').style.display = "none";
-			  } else { 				  //隐藏图片
+			} 
+			else { 				  
+				//隐藏图片
 				document.getElementById('toNewMessage').style.display = "inline";
-				document.getElementById('toNewMessage').style.marginLeft = "48.5px";
-			  }
-			
-			  var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
-			
-			  toNewMessage.onclick = function(){ //点击向下按钮时触发的点击事件
-				scrollToEnd(); //页面移动到顶部
-			  }
+			}
+		
+			var toNewMessage = document.getElementById("toNewMessage"); //获取图片所在的div
+		
+			toNewMessage.onclick = function(){ //点击向下按钮时触发的点击事件
+			scrollToEnd(); //页面移动到顶部
+			}
 		}
 		
 		//图片发送
@@ -300,7 +304,7 @@ $(function(){
 	/*将页面下拉到最新消息处*/
 	function scrollToEnd(){
 			var div = document.getElementsByTagName("div");
-				div_length = div.length-5;
+				div_length = div.length - 6;
 			div[div_length].scrollIntoView({behavior: "smooth"});	   //平滑滚动，提高了用户体验
 	
 	}
@@ -319,11 +323,11 @@ $(function(){
 	/*判定元素是否在界面内*/
 	function isInWindow(x){		
 			if(x.getBoundingClientRect().top > window.innerHeight){
-				console.log("down");
+				// 元素低于当前界面
 				return false;
 			}
 			else if(x.getBoundingClientRect().bottom < 0){
-				console.log("up");
+				// 元素高于当前界面
 				return false;
 			}
 			return true;

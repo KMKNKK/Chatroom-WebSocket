@@ -38,9 +38,11 @@ io.on('connection', function (socket) {
 
 	/*监听发送消息*/
 	socket.on('sendMessage',function(data){
+		data.date = new Date().toLocaleTimeString();
         io.sockets.emit('receiveMessage',data);
     })
 	socket.on('sendImg',function (data) {
+		data.date = new Date().toLocaleTimeString();
 		io.sockets.emit('receiveImage',data);
     })
 	/*退出登录*/
