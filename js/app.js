@@ -25,7 +25,7 @@ io.on('connection', function (socket) {
 	        username = data.username;
 	        users.push({
 	          username:data.username
-	        })
+			})
 	        /*登录成功*/
 	        socket.emit('loginSuccess',data);
 	        /*向所有连接的客户端广播add事件*/

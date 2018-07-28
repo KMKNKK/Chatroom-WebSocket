@@ -33,8 +33,8 @@ html,body{width:100%;height: 100%;}
 
 
 /*聊天界面*/
-.chat-wrap{width: 100%; height: 100%; background:#e7e7e7; text-align:center; background: url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/bg.jpg);}
-.chat-con{padding: 50px 0; background:#e7e7e7; background: url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/bg.jpg); opacity:0.8; position: absolute; width: 100%;}
+.chat-wrap{width: 100%; height: 100%; background:#e7e7e7; text-align:center; background: url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/bg.jpg);}
+.chat-con{padding: 50px 0; background:#e7e7e7; background: url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/bg.jpg); opacity:0.8; position: absolute; width: 100%;}
 .chat-con p{display:inline-block; padding:5px 10px; background:#999;border-radius:5px; color:#fff; margin:5px 0;}
 .bottom{position:fixed;bottom:0; left: 0; width:100%; height: 50px; background: #fff;}
 
@@ -49,20 +49,20 @@ html,body{width:100%;height: 100%;}
 .item-left .img{margin-right:10px;}
 .item-left .uname{font-size:12px; left:50px; top:0; }
 .chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
-.chat-item .img1{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user1.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img2{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user2.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img3{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user3.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img4{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user4.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img5{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user5.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img6{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user6.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img7{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user7.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img8{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user8.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img9{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user9.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img10{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user10.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img11{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user11.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img12{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user12.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img13{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user13.jpg) no-repeat; background-size:100% 100%;}
-.chat-item .img14{display:inline-block; width:40px; height:40px; background:url(http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user14.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img1{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user1.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img2{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user2.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img3{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user3.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img4{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user4.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img5{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user5.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img6{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user6.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img7{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user7.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img8{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user8.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img9{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user9.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img10{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user10.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img11{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user11.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img12{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user12.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img13{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user13.jpg) no-repeat; background-size:100% 100%;}
+.chat-item .img14{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user14.jpg) no-repeat; background-size:100% 100%;}
 
 
 /*聊天室顶栏*/

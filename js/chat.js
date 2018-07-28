@@ -6,13 +6,13 @@ $(function(){
 	var socket,
 	    ip = '47.94.86.217', // 可自行修改为你的服务端IP
 		headnum = 1,         // 用户默认头像
-		uname = null;        // 初始用户名为空
+		uname = null;
 
 	/*登录界面函数*/
 	login();
 
 	/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
-	socket = io('ws://'+ ip +':8081');
+	socket = io('ws://' + ip +':8081');
 	
 	/*主函数*/
 	function main(){
@@ -27,27 +27,12 @@ $(function(){
 			}
 	
 		$('.chat-wrap').hide();
-	
-
-		/*登录*/
-		$('.login-btn').click(function(){
-			uname = $.trim($('#loginName').val());
-			if(uname){
-				/*向服务端发送登录事件*/
-				socket.emit('login',{username:uname})
-			}else{
-				alert('请输入昵称')
-			}
-		})
-	
 		
 		/*发送消息*/
 		$('.sendBtn').click(function(){
 			sendMessage(socket);
 		});
 	
-		/*键盘回车事件*/
-		keydown();
 	
 		/*登录成功*/
 		socket.on('loginSuccess',function(data){
@@ -60,7 +45,9 @@ $(function(){
 		
 		/*登录失败*/
 		socket.on('loginFail',function(){
-			alert('昵称重复')
+			alert('昵称重复');
+			socket.close();
+			socket = io('ws://' + ip +':8081');
 		})
 	
 		/*新人加入提示*/
@@ -196,7 +183,7 @@ $(function(){
 			var target = e.target;
 			if (target.nodeName.toLowerCase() == 'img') {
 				headnum = e.target.num;
-				document.getElementById('defaultHead').setAttribute('src','http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user'+ headnum +'.jpg');				
+				document.getElementById('defaultHead').setAttribute('src','https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user'+ headnum +'.jpg');				
 				headportrait.style.display = 'none';
 			}
 			else {
@@ -207,9 +194,6 @@ $(function(){
 
 		//点击登录后，确认IP地址
 		$('.login-btn').click(function(){
-			//if(document.getElementById('loginIP').value)
-			//ip = document.getElementById('loginIP').value;
-			//进入主函数
 			main();
 		});
 	}
@@ -223,7 +207,7 @@ $(function(){
 				
 			var headItem = document.createElement('img');
 
-			headItem.src = 'http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user' + i + '.jpg';
+			headItem.src = 'https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user' + i + '.jpg';
 		
 			headItem.num = i;
 		
@@ -241,9 +225,6 @@ $(function(){
 			if(event.keyCode == 13 && $('#chat-wrap').css("display")==="none"){   //登录界面                
 				uname = $.trim($('#loginName').val());
 				if(uname){
-					//if(document.getElementById('loginIP').value)
-					//ip = document.getElementById('loginIP').value;
-					//进入主函数
 					main();		
 				}else{
 					alert('请输入昵称')
@@ -265,7 +246,7 @@ $(function(){
 		for (let i = 0; i < 38; i++) {
 			
 			var emojiItem = document.createElement('img');
-			emojiItem.src = 'http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + i + '.gif';
+			emojiItem.src = 'https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + i + '.gif';
 			emojiItem.title = i;
 			emojiItem.num = i;
 		
@@ -344,7 +325,7 @@ $(function(){
 				if (emojiIndex > totalEmojiNum) {
 					result = result.replace(match[0], '[X]');
 				} else {
-					result = result.replace(match[0], '<img class="emoji" src="http://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + emojiIndex + '.gif" />');
+					result = result.replace(match[0], '<img class="emoji" src="https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/emoji/' + emojiIndex + '.gif" />');
 				};
 			};
 			return result;
