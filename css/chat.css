@@ -47,8 +47,8 @@ html,body{width:100%;height: 100%;}
 .item-right .img{margin-left:10px;}
 .item-left .message{background: #fff; margin-top:20px;}
 .item-left .img{margin-right:10px;}
-.item-left .uname{font-size:12px; left:50px; top:0; }
-.chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
+.item-left .uname{font-size:12px; left:60px; top:0; }
+.chat-item .message{width:35%;display:block; padding:10px;border-radius:5px; margin-left: 10px; margin-right: 10px;}
 .chat-item .img1{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user1.jpg) no-repeat; background-size:100% 100%;}
 .chat-item .img2{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user2.jpg) no-repeat; background-size:100% 100%;}
 .chat-item .img3{display:inline-block; width:40px; height:40px; background:url(https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user3.jpg) no-repeat; background-size:100% 100%;}
