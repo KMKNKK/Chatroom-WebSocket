@@ -225,8 +225,10 @@ $(function(){
 			var target = e.target;
 			if (target.nodeName.toLowerCase() == 'img') {
 				headnum = e.target.num;
-				document.getElementById('defaultHead').setAttribute('src','https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user'+ headnum +'.jpg');				
-				headportrait.style.display = 'none';
+				if (headnum != null && headnum != undefined) {
+					document.getElementById('defaultHead').setAttribute('src','https://kmknkk.oss-cn-beijing.aliyuncs.com/chat-img/user/user'+ headnum +'.jpg');				
+					headportrait.style.display = 'none';
+				}
 			}
 			else {
 				headportrait.style.display = 'none';
