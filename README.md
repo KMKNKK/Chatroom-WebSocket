@@ -25,5 +25,5 @@ This is an IM-chatroom made by Websocket（socket.io）
 ```
 
 `Here are some previewing effects:`
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/6.gif">
-<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/img_read/5.gif">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/jQuery-chat/img_read/6.gif">
+<img src="https://github.com/KMKNKK/Chatroom-WebScoket/blob/homework/jQuery-chat/img_read/5.gif">
