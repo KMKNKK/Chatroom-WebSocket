@@ -1,54 +1,48 @@
 footer {
     overflow: hidden;
-    padding-right: 0.5rem;
-    margin-bottom: 0.1rem;
-    position:fixed;
+    padding-right: 0.5%;
+    margin: 0.5% 0;
     bottom:0;
     left: 0;
     width:100%;
-    height: 2.5rem;
+    height: 8vh;
     background: #fff;
 }
 
 footer input {
-    width: 5rem; 
-    height: 2.5rem;
-    line-height: 2.5rem; 
+    height: 100%;
+    line-height: 100%; 
     float:left;
     border:none;
-    margin-left: 0.8rem;
 }
 
 footer button {
-    width: 2.5rem;
-    height: 2.5rem;
+    color: white;
+    opacity: 0.8;
+    width: 10%;
+    height: 100%;
     float: left; 
-    margin-left: 0.8rem;
+    margin-left: 2%;
 }
 
 footer .form-control {
     float: left;
-    width: 30rem;
-    height: 2.5rem;
+    width: 60%;
+    height: 100%;
     font-size: 24px;
-    margin-left: 0.8rem;
+    margin-left: 2%;
 }
 
 #emoji {
-    background-image: url(../../icon/footer/emoji.png);
-    background-size: cover;
+    background: blue;
 }
 
 #sendImage {
-    width: 2.5rem; 
-    height: 2.5rem;
-    background: url(../../icon/footer/sendImage.png);
-    background-size: contain;
+    background: blue;
 }
 
 #sendTxt {
-    background-image: url(../../icon/footer/sendTxt.png);
-    background-size: cover;
+    background: green;
 }
 
 #canNotSee {

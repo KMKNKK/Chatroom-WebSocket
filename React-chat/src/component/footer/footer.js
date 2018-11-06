@@ -6,9 +6,9 @@ class Footer extends Component {
         return (
             <footer>
                 <input className="form-control" type="text" id="sendtxt" />
-                <button id="emoji" className="btn" title="emoji" />
-                <button id="sendImage" className="btn" title="sendImage" />
-                <button id="sendTxt" className="btn" title="sendTxt"></button>
+                <button id="emoji" className="btn" title="emoji">Emoji</button>
+                <button id="sendImage" className="btn" title="sendImage">Image</button>
+                <button id="sendTxt" className="btn" title="sendTxt">Send</button>
                 <input id="canNotSee" type="file" />
             </footer>
         );
