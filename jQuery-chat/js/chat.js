@@ -1,23 +1,23 @@
-/*聊天界面隐藏*/
+/* 聊天界面隐藏 */
 $('.chat-wrap').hide();
 
 $(function(){
 	
 	var socket,
-	    ip = '47.94.86.217', // 可自行修改为你的服务端IP
+	    ip = '127.0.0.1',    // 可自行修改为你的服务端IP
 		headnum = 1,         // 用户默认头像
 		uname = null;
 
-	/*登录界面函数*/
+	/* 初始化登录界面 */
 	login();
 
-	/*建立socket连接，使用websocket协议，端口号是服务器端监听端口号*/
+	/* 建立WebSocket连接，使用websocket协议，端口号是服务器端监听端口号 */
 	socket = io('ws://' + ip +':8081');
 	
-	/*主函数*/
+	/* 主函数 */
 	function main(){
 			
-		//当名字不为空时，去掉两头空格并发给服务端
+		/* 当名字不为空时，去掉两头空格并发给服务端 */
 		uname = $.trim($('#loginName').val());
 			if(uname){
 				/*向服务端发送登录事件*/
@@ -28,13 +28,12 @@ $(function(){
 	
 		$('.chat-wrap').hide();
 		
-		/*发送消息*/
+		/* 发送消息 */
 		$('.sendBtn').click(function(){
 			sendMessage(socket);
 		});
-	
-	
-		/*登录成功*/
+
+		/* 登录成功 */
 		socket.on('loginSuccess',function(data){
 			if(data.username === uname){
 				checkin(data)
@@ -43,29 +42,29 @@ $(function(){
 			}
 		})
 		
-		/*登录失败*/
+		/* 登录失败 */
 		socket.on('loginFail',function(){
 			alert('昵称重复');
 			socket.close();
 			socket = io('ws://' + ip +':8081');
 		})
 	
-		/*新人加入提示*/
+		/* 新人加入提示 */
 		socket.on('add',function(data){
 			var html = '<p>系统消息:'+data.username+'已加入群聊</p>'+'<br>';
 			$('.chat-con').append(html);
 		})
 	
-		/*接收消息*/
-		socket.on('receiveMessage',function(data){
-			showMessage(data)
+		/* 接收消息 */
+		socket.on('receiveMessage', function(messageObject) {
+			showMessage(messageObject);
 		})
-		/*接受图片*/
-		socket.on('receiveImage',function (data) {
-			showImage(data)
-			console.log(data);
+		/* 接受图片 */
+		socket.on('receiveImage', function(imgObject) {
+			showImage(imgObject);
 		})
-		/*退出群聊提示*/
+
+		/* 退出群聊提示 */
 		socket.on('leave',function(name){
 			if(name != null){
 				var html = '<p>系统消息:'+name+'已退出群聊</p>'+'<br>';
@@ -75,7 +74,7 @@ $(function(){
 	
 		document.getElementById('toNewMessage').style.display = "none";
 	
-		//点击表情按钮时
+		/* 点击表情按钮时 */
 		document.getElementById('emoji').addEventListener('click', function(e) {
 			var emojiwrapper = document.getElementById('emojiWrapper');
 			if(emojiwrapper.style.display != 'block'){
@@ -86,7 +85,7 @@ $(function(){
 			e.stopPropagation();
 		}, false);
 		
-		/*如果点击的不是头像界面或表情界面，则将其隐藏*/
+		/* 如果点击的不是头像界面或表情界面，则将其隐藏 */
 		document.body.addEventListener('click', function(e) {
 			if($('#chat-wrap').css("display")==="none") 				//位于登录界面
 			{
@@ -103,9 +102,9 @@ $(function(){
 			}
 		});
 		
-		//emoji
+		/* emoji */
 		document.getElementById('emojiWrapper').addEventListener('click', function(e) {
-			//获取被点击的对象
+			/* 获取被点击的对象 */
 			var target = e.target;
 			console.log(target);
 			if (target.nodeName.toLowerCase() == 'img') {   //如果是表情图像则发送
@@ -115,7 +114,7 @@ $(function(){
 			};
 		}, false);
 		
-		//页面滚动事件
+		/* 页面滚动事件 */
 		window.onscroll = function(){
 
 			let top = window.pageYOffset || document.documentElement.scrollTop;
@@ -136,7 +135,7 @@ $(function(){
 			}
 		}
 		
-		//图片发送
+		/* 图片发送 */
 		document.getElementById('sendImage').addEventListener('change', function() {
 
 			var img = new Image();
@@ -179,7 +178,7 @@ $(function(){
 				socket.emit('sendImg',{username:uname,image: result,date:new Date().toTimeString().substr(0, 8),headnum:headnum});
 			};
 
-			//检查是否有文件被选中
+			/* 检查是否有文件被选中 */
 			if (this.files.length != 0) {
 				//获取文件并用FileReader进行读取
 				for(let i = 0;i<this.files.length;i++){
