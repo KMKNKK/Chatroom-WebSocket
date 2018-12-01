@@ -1,0 +1,18 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer-button {
+    width: 8%;
+    height: 50px;
+    margin-left: 25px;
+}
+
+.footer-input {
+    height: 50px;
+    width: 65%;
+}
+
+

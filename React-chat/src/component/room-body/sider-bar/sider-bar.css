@@ -1,4 +1,4 @@
-aside {
+.sider-bar {
     transition:width 1s;
     -moz-transition:width 1s; /* Firefox 4 */
     -webkit-transition:width 1s; /* Safari and Chrome */
@@ -6,5 +6,4 @@ aside {
     width: 15%;
     height: 100%;
     float: left;
-    background: red; 
 }
